@@ -1,0 +1,11 @@
+<div class="header">
+    <a routerLink="/" class="logo">Wasuuuuuuup</a>
+    <div class="header-right">
+      <a  routerLink="/">Home</a>
+      <a routerLink="/task/create">Create Task</a>
+      <a routerLink="/task">Tasks List</a>
+      <a routerLink="/auth" *ngIf="!isLoggedin">Login</a>
+      <a routerLink="/" *ngIf="isLoggedin" (click)="onLogout()">Logout</a>
+    </div>
+</div>
+

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth/auth.service';
+import { AutoLogoutService } from './auth/auto-logout.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'taskmanagement';
+
+  constructor(private authService: AuthService,
+              private autoLogout: AutoLogoutService
+    ){}
+
+ ngOnInit(){
+  this.authService.autologin();
+  this.autoLogout.check();
+ }
 }

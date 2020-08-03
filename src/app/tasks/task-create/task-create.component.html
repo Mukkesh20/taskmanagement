@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="onSaveTask(taskForm)" #taskForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="title"
+        [ngModel]="task?.title"
+        required
+        minlength="3"
+        placeholder="Task Title"
+        #title="ngModel">
+      <mat-error *ngIf="title.invalid">Please enter a task title.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        matInput
+        rows="4"
+        name="description"
+        [ngModel]="task?.description"
+        required
+        placeholder="Task Description"
+        #description="ngModel"></textarea>
+      <mat-error *ngIf="description.valid">Please enter a task description.</mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit">Save Task</button>
+  </form>
+</mat-card>

@@ -1,0 +1,94 @@
+<div class="container register">
+  <div class="row">
+
+      <div class="row"  *ngIf="signupSuccess">
+          <div class="col-xs-12">
+            <p class="alert alert-success">
+                <strong>Registration Success!</strong> Login to access yur tasks.
+            </p>
+          </div>
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="errorMsg !== null">
+            <h4 class="alert-heading">{{errorMsg}}</h4>
+
+        </div>
+        <div *ngIf="isLoading" style="text-align: center">
+            <loading-spinner></loading-spinner>
+        </div>
+      <div class="container" *ngIf="isSignupMode" >
+          <form [formGroup]="signupForm" (ngSubmit)="onSignup()" style="border:1px solid #ccc; padding: 10px">
+        <div class="form-group">
+            <h1>Sign Up</h1>
+        <p>Please fill in this form to create an account.</p>
+        <hr>
+
+        <label for="username"><b>Username</b></label>
+        <input type="text" formControlName="username" placeholder="Enter Username" name="username" >
+        <span class="help-block" *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched">
+          Please Enter Valid data for username
+        </span>
+
+        <label for="email"><b>Email</b></label>
+        <input type="text" formControlName="email" placeholder="Enter Email" name="email" >
+
+        <label for="password"><b>Password</b></label>
+        <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Enter Password" id="password" name="password" >
+        Show Password <input type="checkbox" (click)="togglePasswordVisiblity()">
+        <br><br>
+
+        <label for="Gender" ><b>Gender</b></label>
+        <div class="radio">
+          <label><input type="radio" formControlName="gender" name="gender" value="Male" checked>Male</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" formControlName="gender" name="gender" value="Female">Female</label>
+        </div>
+
+        <br>
+        <label for="phoneNumber" ><b>Phone Number</b></label>
+        <input type="text" formControlName="phoneNumber" placeholder="Phone Number" name="phoneNumber" >
+
+        <label for="age"><b>Age</b></label>
+        <input type="number" formControlName="age" placeholder="Age" name="age" >
+
+        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+        <div class="clearfix">
+          <button type="reset" class="cancelbtn"  (click)="onReset()">Cancel</button>
+          <button type="submit" class="signupbtn" [disabled]="!signupForm.valid">Sign Up</button>
+        </div>
+        <div>
+          <p>If you already have an account. Click <a (click)="onLogClick()">Signin</a></p>
+        </div>
+        </div>
+        </form>
+      </div>
+
+      <div class="container" *ngIf="!isSignupMode" >
+          <form [formGroup]="loginForm" (ngSubmit)="onSignin()" style="border:1px solid #ccc; padding: 10px" >
+        <h1>Login</h1>
+        <p>Enter your credentials</p>
+        <hr>
+
+        <label for="username"><b>Username</b></label>
+        <input type="text" formControlName="username" class="form-control" placeholder="Enter Username" name="username" >
+
+        <label for="password"><b>Password</b></label>
+        <input type="password" formControlName="password" class="form-control" placeholder="Enter Password" name="password" >
+
+        <div class="clearfix">
+          <button type="reset" class="cancelbtn">Cancel</button>
+          <button type="submit" class="signinbtn" [disabled]="!loginForm.valid">Login</button>
+        </div>
+        <div>
+          <p>Not Registered yet? Click <a (click)="onSignupClick()">Sign up</a></p>
+        </div>
+          </form>
+      </div>
+
+
+
+
+  </div>
+
+</div>
